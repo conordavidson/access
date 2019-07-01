@@ -1,10 +1,12 @@
 # Guarantee
 
-###### Access deeply nested unknown shapes with at-runtime type safety.
+[![codecov](https://codecov.io/gh/conordavidson/guarantee/branch/master/graph/badge.svg)](https://codecov.io/gh/conordavidson/guarantee)
+
+#### Access deeply nested unknown shapes with at-runtime type safety.
 
 Guarantee allows you to access values in `unknown` or `any` types and have be assured you will get the correct type out. If the value is missing, undefined, or the incorrect type, the given fallback is return instead. This is achieved with at-runtime type checking. A global callback can also be registered to be called anytime a fallback is returned.
 
-### Installation
+## Installation
 
 ###### yarn
 
@@ -18,7 +20,7 @@ yarn add guarantee
 npm install guarantee
 ```
 
-### Example
+## Example
 
 ```ts
 import { getString, getNumber } from 'guarantee';
@@ -40,7 +42,7 @@ getNumber(apiResponse, x => x.data.user.address.state, 999); // 999
 
 ---
 
-### API
+## API
 
 #### `getString`
 
@@ -98,13 +100,13 @@ getBooleanMap<ObjectType, ReturnType>(obj: ObjectType, accessor: (obj: ObjectTyp
 
 ---
 
-### Configuration
+## Configuration
 
 A callback can be registered with the default `guarantee` export. This callback will be called anytime a fallback is returned.
 
 A typical usecase for this is to send a message to some error tracking software signaling that a CMS or some other remote server is no longer returning data in a shape that we expected. See the example below:
 
-###### Configuration Example
+#### Configuration Example
 
 #### `getter.ts`
 
@@ -149,13 +151,13 @@ getString(apiResponse, x => x.missing.key, 'fallback text'); // "fallback text"
 
 ---
 
-### Related Projects
+## Related Projects
 
 [`ts-get`](https://github.com/RIP21/ts-get) and [`idx`](https://github.com/facebookincubator/idx) share the same goals and API as this one. The biggest difference is that this library works against `unknown` types, whereas the others require the accessed object to be explicitly typed with optional types. Neither library does runtime checking to prevent against type mismatches either.
 
-### FAQ
+## FAQ
 
-###### Why not use a generic type signature?
+#### Why not use a generic type signature?
 
 The library was originally implemented as one generic `get` function. It looked something like:
 
