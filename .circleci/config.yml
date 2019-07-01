@@ -1,0 +1,6 @@
+version: 2
+jobs:
+  build:
+    working_directory: ~/guarantee
+    steps:
+      - run: npm run i && npm run build && npm run test:cover
