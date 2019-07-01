@@ -1,14 +1,3 @@
-aliases:
-  - &restore-yarn-cache
-    keys:
-      - v1-yarn-cache-{{ arch }}-{{ checksum "yarn.lock" }}
-      - v1-yarn-cache-{{ arch }}
-
-  - &save-yarn-cache
-    paths:
-      - ~/.cache/yarn
-key: v1-yarn-cache-{{ arch }}-{{ checksum "yarn.lock" }}
-
 version: 2
 jobs:
   test:
@@ -16,9 +5,7 @@ jobs:
       - image: node:8
     working_directory: ~/guarantee
     steps:
-      - restore-cache: *restore-yarn-cache
-      - run: yarn install --non-interactive --cache-folder ~/.cache/yarn
-      - save-cache: *save-yarn-cache
+      - run: yarn install
       - run: yarn build
       - run: yarn test
 
