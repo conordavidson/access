@@ -1,16 +1,11 @@
 version: 2
 jobs:
-  test:
+  build:
     docker:
       - image: node:8
     working_directory: ~/guarantee
     steps:
+      - checkout
       - run: yarn install
       - run: yarn build
-      - run: yarn test
-
-workflows:
-  version: 2
-  tests:
-    jobs:
-      - test
+      - run: yarn test:cover
