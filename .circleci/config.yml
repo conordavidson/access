@@ -1,7 +1,6 @@
 version: 2
 jobs:
   build:
-    working_directory: ~/guarantee
     docker:
       - image: circleci/node:8
     steps:
