@@ -1,7 +1,7 @@
 {
-  "name": "guarantee",
+  "name": "access",
   "version": "1.0.0",
-  "description": "Access deeply nested unknown shapes with at-runtime type safety.",
+  "description": "Get deeply nested values from unknown shapes with at-runtime type safety.",
   "main": "./lib/index.js",
   "types": "./lib/index.d.ts",
   "author": "Conor Davidson <conor@conordavidson.com>",

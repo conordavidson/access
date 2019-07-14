@@ -1,4 +1,4 @@
-import { Guarantee, FallbackCallback } from './types';
+import { Access, FallbackCallback } from './types';
 import {
   getString,
   getNumber,
@@ -13,8 +13,8 @@ import {
 
 export { getString, getNumber, getBoolean, getStringArray, getNumberArray, getBooleanArray, getStringMap, getNumberMap, getBooleanMap };
 
-export default function guaranteeFactory(fallbackCallback?: FallbackCallback): Guarantee;
-export default function guaranteeFactory(fallbackCallback) {
+export default function accessFactory(fallbackCallback?: FallbackCallback): Access;
+export default function accessFactory(fallbackCallback) {
   return {
     getString: (object, accessorFunction, fallback) => getString(object, accessorFunction, fallback, fallbackCallback),
     getNumber: (object, accessorFunction, fallback) => getNumber(object, accessorFunction, fallback, fallbackCallback),

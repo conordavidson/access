@@ -1,4 +1,4 @@
-import guarantee from '../index';
+import access from '../index';
 
 const {
   getString,
@@ -10,7 +10,7 @@ const {
   getStringMap,
   getNumberMap,
   getBooleanMap,
-} = guarantee();
+} = access();
 
 describe('getString', () => {
   const testShape: unknown = {

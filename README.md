@@ -1,29 +1,29 @@
-# Guarantee
+# Access
 
 [![codecov](https://codecov.io/gh/conordavidson/guarantee/branch/master/graph/badge.svg)](https://codecov.io/gh/conordavidson/guarantee)
 
-#### Access deeply nested unknown shapes with at-runtime type safety.
+#### Get deeply nested properties from unknown shapes with at-runtime type safety.
 
-Guarantee allows you to access values in `unknown` or `any` types and have be assured you will get the correct type out. If the value is missing, undefined, or the incorrect type, the given fallback is return instead. This is achieved with at-runtime type checking. A global callback can also be registered to be called anytime a fallback is returned.
+Access allows you to get values in `unknown` or `any` types and be assured you will get the correct type out. If the value is missing, undefined, or the incorrect type, the given fallback is returned instead. This is achieved with at-runtime type checking. A global callback can also be registered to be called anytime a fallback is returned.
 
 ## Installation
 
 ###### yarn
 
 ```
-yarn add guarantee
+yarn add access
 ```
 
 ###### npm
 
 ```
-npm install guarantee
+npm install access
 ```
 
 ## Example
 
 ```ts
-import { getString, getNumber } from 'guarantee';
+import { getString, getNumber } from 'access';
 
 const apiResponse: unknown = {
   data: {
@@ -102,7 +102,7 @@ getBooleanMap<ObjectType, ReturnType>(obj: ObjectType, accessor: (obj: ObjectTyp
 
 ## Configuration
 
-A callback can be registered with the default `guarantee` export. This callback will be called anytime a fallback is returned.
+A callback can be registered with the default `access` export. This callback will be called anytime a fallback is returned.
 
 A typical usecase for this is to send a message to some error tracking software signaling that a CMS or some other remote server is no longer returning data in a shape that we expected. See the example below:
 
@@ -111,7 +111,7 @@ A typical usecase for this is to send a message to some error tracking software 
 #### `getter.ts`
 
 ```ts
-import guarantee from 'guarantee';
+import access from 'access';
 
 const {
   getString,
@@ -123,7 +123,7 @@ const {
   getStringMap,
   getNumberArray,
   getBooleanMap,
-} = guarantee(error => {
+} = access(error => {
   ErrorTracker.send('ui.fallback.returned', error);
 });
 
@@ -162,37 +162,37 @@ getString(apiResponse, x => x.missing.key, 'fallback text'); // "fallback text"
 The library was originally implemented as one generic `get` function. It looked something like:
 
 ```ts
-function guarantee<ObjectType, ReturnType extends number>(
+function access<ObjectType, ReturnType extends number>(
   obj: ObjectType,
   accessor: (obj: ObjectType) => ReturnType,
   fallback: ReturnType,
 ): number;
-function guarantee<ObjectType, ReturnType extends string>(
+function access<ObjectType, ReturnType extends string>(
   obj: ObjectType,
   accessor: (obj: ObjectType) => ReturnType,
   fallback: ReturnType,
 ): string;
-function guarantee<ObjectType, ReturnType extends boolean>(
+function access<ObjectType, ReturnType extends boolean>(
   obj: ObjectType,
   accessor: (obj: ObjectType) => ReturnType,
   fallback: ReturnType,
 ): boolean;
-function guarantee<ObjectType, ReturnType extends number[]>(
+function access<ObjectType, ReturnType extends number[]>(
   obj: ObjectType,
   accessor: (obj: ObjectType) => ReturnType,
   fallback: ReturnType,
 ): number[];
-function guarantee<ObjectType, ReturnType extends string[]>(
+function access<ObjectType, ReturnType extends string[]>(
   obj: ObjectType,
   accessor: (obj: ObjectType) => ReturnType,
   fallback: ReturnType,
 ): string[];
-function guarantee<ObjectType, ReturnType extends boolean[]>(
+function access<ObjectType, ReturnType extends boolean[]>(
   obj: ObjectType,
   accessor: (obj: ObjectType) => ReturnType,
   fallback: ReturnType,
 ): boolean[];
-function guarantee(object, accessorFn, fallback, fallbackCallback) {
+function access(object, accessorFn, fallback, fallbackCallback) {
   try {
     const result = accessor(object);
     if (isNumber(fallback) && isNumber(result)) return result;

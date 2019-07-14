@@ -14,7 +14,7 @@ export type Known = object | number | string | boolean | null | number[] | strin
 export type UnknownAccessorFunction = (object: any) => unknown;
 export type FallbackCallback = (error: Error) => void;
 
-export interface Guarantee {
+export interface Access {
   getString: typeof getString;
   getNumber: typeof getNumber;
   getBoolean: typeof getBoolean;
