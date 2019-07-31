@@ -1,6 +1,6 @@
 # Access
 
-[![codecov](https://codecov.io/gh/conordavidson/guarantee/branch/master/graph/badge.svg)](https://codecov.io/gh/conordavidson/guarantee)
+[![codecov](https://codecov.io/gh/conordavidson/access/branch/master/graph/badge.svg)](https://codecov.io/gh/conordavidson/access)
 
 #### Get deeply nested properties from unknown shapes with at-runtime type safety.
 
